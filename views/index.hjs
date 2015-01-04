@@ -28,35 +28,55 @@
 		        <div id="navbar" class="collapse navbar-collapse">
 		          	<ul class="nav navbar-nav">
 		            	<li class="active"><a href="#">Home</a></li>
-		            	<li><a href="#mountain">Mountain</a></li>
-		            	<li><a href="#road">Road</a></li>
 		            	<li><a href="#contact">Contact</a></li>
 		            	<li><a href="#footer">footer</a></li>
 		          	</ul>
 		        </div><!--/.nav-collapse -->
 	      	</div><!--/container -->
-	    </nav>
+	    </nav><!--/nav -->
 
-		<div class="container top_heading">
-	  		<h1><% title %></h1>
-	  		<p class="lead"><% article %></p>
-	  		<p>...</p>
-	  		<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
-	  	</div>
+	    <div class="container">
 
-	    <div class="container" ng-controller="FeatureController as feature">
-	      	<h3 class="text-uppercase"><% joinTitle %></h3>
-	      	<h1 class="lead"><% joinSubTitle %></h1>
-	      	<div class="row">
-			  	<div class="col-md-4" ng-repeat="excerpt in feature.excerpts">
-			  		<h2 class="text-left">{{ excerpt.title }}</h2>
-			  		<p class="lead text-left">{{ excerpt.description }}</p>
-			  	</div>
-			</div><!--/row class -->
+			<div class="container top_heading">
+		  		<h1><% title %></h1>
+		  		<p class="lead"><% article %></p>
+		  		<p>...</p>
+		  		<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+		  	</div>
 
-			<h3 class="text-uppercase"><% membersTitle %></h3>
-			<h1 class="lead"><% membersSubTitle %></h1>
-			<div ng-controller="StaffController as staff"> 
+		  	<div class="tab" ng-controller="TabController as tab">
+		  		<ul class="nav nav-pills">
+			  		<li ng-class="{active:tab.isSet(1)}"> 
+			  		<a href ng-click="tab.setTab(1)">Road</a> 
+			  		</li>
+			  		<li ng-class="{active:tab.isSet(2)}"> 
+			  		<a href ng-click="tab.setTab(2)">Mountain</a> 
+			  		</li>
+		  		</ul>
+		  		<div ng-show="tab.isSet(1)">
+		  			<h2>This is the Road Tab</h2>
+		  			<p class="lead">...</p>
+		  		</div>
+		  		<div ng-show="tab.isSet(2)">
+		  			<h2>This is the Mountain Tab</h2>
+		  			<p class="lead">...</p>
+		  		</div>
+		  	</div>
+
+	    	<div class="container" ng-controller="FeatureController as feature">
+	      		<h3 class="text-uppercase"><% joinTitle %></h3>
+	      		<h1 class="lead"><% joinSubTitle %></h1>
+	      		<div class="row">
+			  		<div class="col-md-4" ng-repeat="excerpt in feature.excerpts">
+			  			<h2 class="text-left">{{ excerpt.title }}</h2>
+			  			<p class="lead text-left">{{ excerpt.description }}</p>
+			  		</div>
+				</div><!--/row class -->
+			</div><!--/feature container -->	
+			
+			<div ng-controller="StaffController as staff">
+				<h3 class="text-uppercase"><% membersTitle %></h3>
+				<h1 class="lead"><% membersSubTitle %></h1>
 				<div class="row">
 					<div class="col-md-4" ng-repeat="person in staff.persons" >
 					<h2>{{person.name}}</h2>
@@ -65,7 +85,7 @@
 					<p>{{person.email}}</p>
 					</div>
 				</div>
-			</div>
+			</div><!--/staff container -->
 
 	    </div><!-- /.container -->
 		
