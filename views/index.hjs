@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="velo">
   	<head>
 	  	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 
-	    <title>{{ title }}</title>
+	    <title><% title %></title>
 	    <link rel='stylesheet' href='/stylesheets/style.css' />
 	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
+	    <script type="text/javascript" src="/javascripts/ang.js"></script>
 
 		<!--Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
@@ -21,7 +22,7 @@
 		            <span class="icon-bar"></span>
 		            <span class="icon-bar"></span>
 		        	</button>
-	          		<a class="navbar-brand" href="#">{{ titleShort }}</a>
+	          		<a class="navbar-brand" href="#"><% titleShort %></a>
 	        	</div>
 
 		        <div id="navbar" class="collapse navbar-collapse">
@@ -35,49 +36,48 @@
 	      	</div><!--/container -->
 	    </nav>
 
-		<div class="jumbotron">
-			<div class="container">
-		  		<h1>{{ title }}</h1>
-		  		<p class="lead">{{ article }}</p>
-		  		<p>...</p>
-		  		<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
-		  	</div>
-		 </div>
+		<div class="container">
+	  		<h1><% title %></h1>
+	  		<p class="lead"><% article %></p>
+	  		<p>...</p>
+	  		<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+	  	</div>
 
-	    <div class="container">
-	      	<h3 class="text-uppercase">{{ joinTitle }}</h3>
-	      	<h1 class="lead">{{ joinSubTitle }}</h1>
+	    <div class="container" ng-controller="FeatureController as feature">
+	      	<h3 class="text-uppercase"><% joinTitle %></h3>
+	      	<h1 class="lead"><% joinSubTitle %></h1>
 	      	<div class="row">
-			  	<div class="col-md-4">Get in shape</div>
-			  	<div class="col-md-4">velo</div>
-			  	<div class="col-md-4">velo</div>
-			</div><!--/row class -->
-	      	<div class="row">
-			  	<div class="col-md-4">velo</div>
-			  	<div class="col-md-4">velo</div>
-			  	<div class="col-md-4">velo</div>
-			</div><!--/row class -->
-	      	<div class="row">
-			  	<div class="col-md-4">velo</div>
-			  	<div class="col-md-4">velo</div>
-			  	<div class="col-md-4">velo</div>
+			  	<div class="col-md-4" ng-repeat="excerpt in feature.excerpts">
+			  		<h2 class="text-left">{{ excerpt.title }}</h2>
+			  		<p class="lead text-left">{{ excerpt.description }}</p>
+			  	</div>
 			</div><!--/row class -->
 
-			<h3 class="text-uppercase">{{ membersTitle }}</h3>
-			<h1 class="lead">{{ membersSubTitle }}</h1> 
+			<h3 class="text-uppercase"><% membersTitle %></h3>
+			<h1 class="lead"><% membersSubTitle %></h1>
+			<div ng-controller="StaffController as staff"> 
+				<div class="row">
+					<div class="col-md-4" ng-repeat="person in staff.persons" >
+					<h2>{{person.name}}</h2>
+					<p>{{person.title}}</p>
+					<p>{{person.description}}</p>
+					<p>{{person.email}}</p>
+					</div>
+				</div>
+			</div>
 
 	    </div><!-- /.container -->
 		
 		<!--Footer Class -->
 	     <footer class="footer">
       		<div class="container">
-        		<p class="text-muted">Place sticky footer content here.</p>
+        		<p class="text-muted">Velo Atlanta Cycling Club www.veloatlanta.com 2014 WebMaster Terms and Conditions</p>
       		</div><!--/container -->
     	</footer>
 
 		<!--/Modules and Libraries -->
 	    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+	    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	</body>
