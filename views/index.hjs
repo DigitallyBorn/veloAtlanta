@@ -28,9 +28,10 @@
 		        <div id="navbar" class="collapse navbar-collapse">
 		          	<ul class="nav navbar-nav">
 		            	<li class="active"><a href="#">Home</a></li>
-		            	<li><a href="#about">Moutain</a></li>
-		            	<li><a href="#event">Road</a></li>
+		            	<li><a href="#mountain">Mountain</a></li>
+		            	<li><a href="#road">Road</a></li>
 		            	<li><a href="#contact">Contact</a></li>
+		            	<li><a href="#footer">footer</a></li>
 		          	</ul>
 		        </div><!--/.nav-collapse -->
 	      	</div><!--/container -->
@@ -59,7 +60,7 @@
 				<div class="row">
 					<div class="col-md-4" ng-repeat="person in staff.persons" >
 					<h2>{{person.name}}</h2>
-					<p>{{person.title}}</p>
+					<h3>{{person.title}}</h3>
 					<p>{{person.description}}</p>
 					<p>{{person.email}}</p>
 					</div>
@@ -69,7 +70,7 @@
 	    </div><!-- /.container -->
 		
 		<!--Footer Class -->
-	     <footer class="footer">
+	     <footer class="footer" ><a name="footer"></a>
       		<div class="container">
         		<p class="text-muted">Velo Atlanta Cycling Club www.veloatlanta.com 2014 WebMaster Terms and Conditions</p>
       		</div><!--/container -->
