@@ -1,0 +1,12 @@
+<div>
+	<h3 class="text-uppercase"><% membersTitle %></h3>
+	<h1 class="lead"><% membersSubTitle %></h1>
+	<div class="row">
+		<div class="col-md-4" ng-repeat="person in staffs.persons" >
+		<h2>{{person.name}}</h2>
+		<h3>{{person.title}}</h3>
+		<p>{{person.description}}</p>
+		<p>{{person.email}}</p>
+		</div>
+	</div>
+</div><!--/staff container -->
