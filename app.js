@@ -4,8 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-var pg = require('pg');
+var mongodb = require("mongodb");
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -29,22 +28,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 
-//Postgres connection
-var conString = "postgres://dfpblndqmtipaa:xDEwtXSf_B1EJeTSVooFxDHZNJ@ec2-54-235-127-33.compute-1.amazonaws.com:5432/ddttqk03orbcr1";
-//Connect then check for errors
-var client = new pg.Client(conString);
-client.connect(function(err) {
-  if(err) {
-    return console.error('could not connect to postgres', err);
-  }
-  client.query('SELECT NOW() AS "theTime"', function(err, result) {
-    if(err) {
-      return console.error('error running query', err);
-    }
-    console.log(result.rows[0].theTime);
-    //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
-    client.end();
-  });
+//MongoDB connection
+var MONGODB_URI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || "mongodb://heroku_app32965021:5gce70tcaso78d4adg14ua931p@ds053390.mongolab.com:53390/",
+    heroku_app32965021,
+    users;
+
+mongodb.MongoClient.connect(MONGODB_URI, function (err, heroku_app32965021) {
+  if (err) throw err;
+  db = heroku_app32965021;
+  users = db.collection("users");
 });
 
 // catch 404 and forward to error handler
