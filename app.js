@@ -5,7 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongodb = require("mongodb");
+var mongoose = require('mongoose');
 
+//routes
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
@@ -28,9 +30,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 
-//MongoDB connection
-var MONGODB_URI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || "mongodb://heroku_app32965021:5gce70tcaso78d4adg14ua931p@ds053390.mongolab.com:53390/heroku_app32965021";
-
+var mongoURI = 'mongodb://ds053390.mongolab.com:53390/heroku_app32965021';
+mongoose.connect(process.env.MONGOLAB_URI || mongoURI);
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function(callback) {
+    console.log('Connection Established Successfully!');
+    var EmailSchema = mongoose.Schema({
+        email: String
+    });
+    var Email = mongoose.model('Email', EmailSchema);
+    var address = new Email({ email: 'casmith109@gmail.com' });
+    console.log(address.email); // 'casmith109@gmail.com'
+    
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
