@@ -29,15 +29,8 @@ app.use('/', routes);
 app.use('/users', users);
 
 //MongoDB connection
-var MONGODB_URI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || "mongodb://heroku_app32965021:5gce70tcaso78d4adg14ua931p@ds053390.mongolab.com:53390/",
-    heroku_app32965021,
-    users;
+var MONGODB_URI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || "mongodb://heroku_app32965021:5gce70tcaso78d4adg14ua931p@ds053390.mongolab.com:53390/heroku_app32965021";
 
-mongodb.MongoClient.connect(MONGODB_URI, function (err, heroku_app32965021) {
-  if (err) throw err;
-  db = heroku_app32965021;
-  users = db.collection("users");
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
