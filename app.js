@@ -9,11 +9,11 @@ app.use('/api/members', function(req, res) {
   res.send([{ name: 'Ricky Smith' }, { name: 'Chris Smith' }]);
 });
 
-if (process.env.NODE_ENV === 'poop') {
+if (process.env.NODE_ENV === 'development') {
   console.log('Starting in development mode ...');
   app.use(require('connect-livereload')());
   app.use('/', express.static(__dirname + '/debug'));
-} else if (process.env.NODE_ENV === 'banana') {
+} else if (process.env.NODE_ENV === 'production') {
   console.log('Starting in production mode ...');
   app.use('/', express.static(__dirname + '/dist'));
 }
