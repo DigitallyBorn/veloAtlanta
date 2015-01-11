@@ -3,7 +3,6 @@ var mongodb = require("mongodb");
 var mongoose = require('mongoose');
 
 var app = module.exports.app = exports.app = express();
-app.use(require('connect-livereload')());
 
 // view engine setup
 app.use('/api/members', function(req, res) {
@@ -11,6 +10,7 @@ app.use('/api/members', function(req, res) {
 });
 
 if (process.env.NODE_ENV === 'development') {
+  app.use(require('connect-livereload')());
   app.use('/', express.static(__dirname + '/debug'));
 } else if (process.env.NODE_ENV === 'development') {
   app.use('/', express.static(__dirname + '/dist'));
