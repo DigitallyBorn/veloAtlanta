@@ -1,11 +1,7 @@
 (function(angular) {
-  var members = function($scope) {
-    $scope.members = [
-      { name: 'Ricky Smith' },
-      { name: 'Tim Smith'},
-      { name: 'Chris Smith' }
-    ];
+  var members = function($scope, membersApi) {
+    $scope.members = membersApi.query();
   };
 
-  angular.module('app').controller('membersController', ['$scope', members]);
+  angular.module('app').controller('membersController', ['$scope', 'membersApi', members]);
 })(angular);

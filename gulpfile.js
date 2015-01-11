@@ -36,12 +36,7 @@ gulp.task('default', ['browser-sync', 'build'], function() {
 });
 
 // Entry task for deployment to production
-gulp.task('deploy', ['build'], function() {
-  process.env.NODE_ENV = 'production';
-  return gulp
-    .task('deploy.bower');
-});
-
+gulp.task('deploy', ['build', 'deploy.bower']);
 
 gulp.task('build', ['build.html', 'build.js', 'build.bower', 'build.less']);
 
