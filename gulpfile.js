@@ -1,5 +1,4 @@
 var gulp = require('gulp');
-var bower = require('gulp-bower');
 var bowerFiles = require('main-bower-files');
 var uglify = require('gulp-uglify');
 var less = require('gulp-less');
@@ -44,8 +43,6 @@ gulp.task('deploy', ['build', 'deploy.bower']);
 gulp.task('build', ['build.html', 'build.js', 'build.bower', 'build.less']);
 
 gulp.task('build.bower', function() {
-  bower();
-
   return gulp.src(bowerFiles())
     .pipe(gulp.dest(paths.debug.bower));
 });
