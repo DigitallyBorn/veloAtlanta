@@ -10,8 +10,11 @@ app.use('/api/members', function(req, res) {
   res.send([{ name: 'Ricky Smith' }, { name: 'Chris Smith' }]);
 });
 
-app.use('/', express.static(__dirname + '/debug'));
-
+if (process.env.NODE_ENV === 'development') {
+  app.use('/', express.static(__dirname + '/debug'));
+} else if (process.env.NODE_ENV === 'development') {
+  app.use('/', express.static(__dirname + '/dist'));
+}
 var port = process.env.PORT || 3000;
 app.listen(port);
 console.log('Listening on port ' . port);
