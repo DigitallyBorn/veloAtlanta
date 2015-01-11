@@ -1,17 +1,9 @@
 var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
 var mongodb = require("mongodb");
 var mongoose = require('mongoose');
 
-//routes
-var routes = require('./routes/index');
-var users = require('./routes/users');
-
-var app = express();
+var app = module.exports.app = exports.app = express();
+app.use(require('connect-livereload')());
 
 // view engine setup
 app.use('/api/members', function(req, res) {
