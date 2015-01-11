@@ -9,13 +9,13 @@ app.use('/api/members', function(req, res) {
   res.send([{ name: 'Ricky Smith' }, { name: 'Chris Smith' }]);
 });
 
-console.log('Variable "live"=' . process.env.live);
+process.env.live = 'production';
 
-if (process.env.live === false) {
+if (process.env.live === 'development') {
   console.log('Starting in development mode ...');
   app.use(require('connect-livereload')());
   app.use('/', express.static(__dirname + '/debug'));
-} else if (process.env.live === true) {
+} else if (process.env.NODE_ENV === 'production') {
   console.log('Starting in production mode ...');
   app.use('/', express.static(__dirname + '/dist'));
 }
