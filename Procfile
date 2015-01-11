@@ -1,1 +1,1 @@
-web: gulp deploy
+web: npm start
