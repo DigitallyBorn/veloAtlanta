@@ -9,9 +9,9 @@ app.use('/api/members', function(req, res) {
   res.send([{ name: 'Ricky Smith' }, { name: 'Chris Smith' }]);
 });
 
-process.env.live = 'production';
+process.env.NODE_ENV = 'production';
 
-if (process.env.live === 'development') {
+if (process.env.NODE_ENV === 'development') {
   console.log('Starting in development mode ...');
   app.use(require('connect-livereload')());
   app.use('/', express.static(__dirname + '/debug'));
