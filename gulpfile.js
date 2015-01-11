@@ -5,6 +5,7 @@ var uglify = require('gulp-uglify');
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 var less = require('gulp-less');
+var minifyHTML = require('gulp-minify-html');
 
 var paths = {
   source: {
@@ -68,6 +69,7 @@ gulp.task('deploy.bower', function() {
 gulp.task('build.html', function() {
   return gulp.src(paths.source.html)
     .pipe(gulp.dest(paths.debug.html))
+    .pipe(minifyHTML({ empty: true, conditionals: true}))
     .pipe(gulp.dest(paths.dist.html));
 });
 
