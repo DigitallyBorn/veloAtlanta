@@ -3,7 +3,6 @@ var bower = require('gulp-bower');
 var bowerFiles = require('main-bower-files');
 var uglify = require('gulp-uglify');
 var browserSync = require('browser-sync');
-var reload = browserSync.reload;
 var less = require('gulp-less');
 var minifyHTML = require('gulp-minify-html');
 
@@ -30,18 +29,10 @@ var paths = {
 process.env.NODE_ENV = 'development';
 
 // Default task: debug mode
-gulp.task('default', ['build'], function() {
-  browserSync({
-    server: {
-      baseDir: paths.debug.html
-    }
-  });
-
-  gulp.watch(paths.source.html, ['build.html', reload]);
-  gulp.watch(paths.source.js, ['build.js', reload]);
-  gulp.watch(paths.source.less, ['build.less'], function() {
-    reload({stream: true});
-  });
+gulp.task('default', ['browser-sync', 'build'], function() {
+  gulp.watch(paths.source.html, ['build.html', browserSync.reload]);
+  gulp.watch(paths.source.js, ['build.js', browserSync.reload]);
+  gulp.watch(paths.source.less, ['build.less']);
 });
 
 // Entry task for deployment to production
@@ -83,5 +74,15 @@ gulp.task('build.js', function() {
 gulp.task('build.less', function() {
   return gulp.src(paths.source.less)
     .pipe(less())
-    .pipe(gulp.dest(paths.debug.css));
+    .pipe(gulp.dest(paths.debug.css))
+    .pipe(browserSync.reload({stream: true}))
+    .pipe(gulp.dest(paths.dist.css));
+});
+
+gulp.task('browser-sync', function() {
+  browserSync({
+    server: {
+      baseDir: paths.debug.html
+    }
+  });
 });

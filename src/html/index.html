@@ -1,4 +1,4 @@
-<html>
+<html ng-app="app">
   <head>
     <title>Test</title>
     <link rel="stylesheet" href="lib/bootstrap.css" />
@@ -26,17 +26,22 @@
       </div>
     </nav>
 
-    <div class="container">
+    <div class="container" ng-controller="shellController">
 
       <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+        <h1>Shell</h1>
+        <p class="lead">{{ message }}</p>
       </div>
+
+      <div ng-include="'app/members/members.html'"></div>
 
     </div><!-- /.container -->
 
     <script src="lib/jquery.js"></script>
     <script src="lib/bootstrap.js"></script>
     <script src="lib/angular.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/shell/shell.js"></script>
+    <script src="app/members/members.js"></script>
   </body>
 </html>
