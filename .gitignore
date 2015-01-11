@@ -1,3 +1,7 @@
+# Build output folders
+debug/
+dist/
+
 # Created by https://www.gitignore.io
 
 ### OSX ###
