@@ -12,7 +12,8 @@ app.use('/api/members', function(req, res) {
 
 app.use('/', express.static(__dirname + '/debug'));
 
-app.listen(3001);
-console.log('Listening on port 3001 ...');
+var port = process.env.PORT || 3000;
+app.listen(port);
+console.log('Listening on port ' . port);
 
 module.exports = app;
