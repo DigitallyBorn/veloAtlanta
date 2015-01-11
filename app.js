@@ -10,7 +10,7 @@ app.use('/api/members', function(req, res) {
   res.send([{ name: 'Ricky Smith' }, { name: 'Chris Smith' }]);
 });
 
-app.use('/', express.static(__dirname + '/dist'));
+app.use('/', express.static(__dirname + '/debug'));
 
 app.listen(3001);
 console.log('Listening on port 3001 ...');
