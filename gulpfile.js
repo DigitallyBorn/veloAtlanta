@@ -25,6 +25,11 @@ var paths = {
   }
 };
 
+gulp.task('heroku:production', function() {
+  console.log('Welcome to heroku in production!');
+  process.env.NODE_ENV = 'production';
+});
+
 // Default task: debug mode
 gulp.task('default', ['build'], function() {
   server.run({
