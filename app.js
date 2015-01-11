@@ -10,9 +10,11 @@ app.use('/api/members', function(req, res) {
 });
 
 if (process.env.NODE_ENV === 'development') {
+  console.log('Starting in development mode ...');
   app.use(require('connect-livereload')());
   app.use('/', express.static(__dirname + '/debug'));
-} else if (process.env.NODE_ENV === 'development') {
+} else if (process.env.NODE_ENV === 'production') {
+  console.log('Starting in production mode ...');
   app.use('/', express.static(__dirname + '/dist'));
 }
 var port = process.env.PORT || 3000;
