@@ -25,8 +25,6 @@ var paths = {
   }
 };
 
-//process.env.NODE_ENV = 'development';
-
 // Default task: debug mode
 gulp.task('default', ['build'], function() {
   server.run({
