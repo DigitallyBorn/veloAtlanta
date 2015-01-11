@@ -1,4 +1,5 @@
 # Build output folders
+Procfile
 debug/
 dist/
 

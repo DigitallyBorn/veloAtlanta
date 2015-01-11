@@ -25,16 +25,16 @@ var paths = {
   }
 };
 
-process.env.NODE_ENV = 'development';
+//process.env.NODE_ENV = 'development';
 
 // Default task: debug mode
 gulp.task('default', ['build'], function() {
   server.run({
     file: 'app.js'
   });
-  gulp.watch(paths.source.html, ['build.html', server.notify]);
-  gulp.watch(paths.source.js, ['build.js', server.notify]);
-  gulp.watch(paths.source.less, ['build.less', server.notify]);
+  gulp.watch(paths.source.html, ['build.html'], server.notify);
+  gulp.watch(paths.source.js, ['build.js'], server.notify);
+  gulp.watch(paths.source.less, ['build.less'], server.notify);
 });
 
 // Entry task for deployment to production
